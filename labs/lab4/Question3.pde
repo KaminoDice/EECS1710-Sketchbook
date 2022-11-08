@@ -13,9 +13,9 @@
 
 
 // POSSIBLE VARIABLES/CONSTANTS 
-String dictionary = "abstract, application, benchmark, compiler, domain, encryption, hashmap, matrix, "; //   String to contain 20 words (space separated); 
+String dictionary = "abstract application benchmark compiler domain encryption hashmap matrix notion ryzen silicon facebook google laser obsidian puzzle quadratic ultrasound virtual oxygen"; //   String to contain 20 words (space separated); 
 char[] word;//   array to keep dictionary of words; 
-int[] hindex;//   array to track hidden word; 
+int[] hidex;//   array to track hidden word; 
 int[] showIndex;//   array to track the characters to show to screen for the guesses of the hidden word
 boolean check = false;//   boolean flags to track when guess is finished
 int gus_counter = 0;//   counter to track how many guesses so far
