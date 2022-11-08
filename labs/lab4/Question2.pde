@@ -42,7 +42,7 @@ void showArray(String arrayName, int[] array) {
   for (int i=0;i<array.length;i++){
     print( array[i]);
     if( i<array.length-1){ 
-      print(",");
+      print(", ");
     }
   } 
   println(" ]");
