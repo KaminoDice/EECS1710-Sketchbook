@@ -1,0 +1,92 @@
+// Lab 4 - Question1.pde
+// ======================================
+// Student ID: 
+// First Name:
+// EECS User Name (not password):
+// ======================================
+
+// DO NOT INCLUDE ANY setup() or draw() routines here, these will be located in your main file
+
+// Question 1:  
+
+// The patterns only require a single loop to generate - we can assume the number of steps in both
+// horizontal and vertical directions is the same.  The steps variable controls the spacing between the lines.
+// You can modify these methods to parametrize them to use a start position for top left, and width/height
+// - this might help for part (c), though it is not necessary.
+
+
+// NOTE: if variables or constants are defined outside of methods here, they also have scope over the whole 
+//       program (as they are not within any specific block).  If you define these INSIDE a method, then they
+//       only have scope within that method.  This also is true of code placed in the other question files.
+
+
+
+final int DEFAULT_STEPS = 10;        // default number of steps (spacing between lines)
+
+
+// PART (a)    [ 5 marks ]
+
+void drawStraightCurveWeb(int steps) {
+  
+  // use whole window
+  
+  // TO COMPLETE
+  for (int i = 0;i<steps; i+=1){
+    int x1 = i*width/steps;
+    int y2 = i*height/steps;
+    line(x1,width, 0,y2);
+  }
+  
+}
+
+
+// PART (b)    [ 5 marks ]
+
+void drawStraightCurveEye(int steps) {
+
+  // use whole window
+
+  // TO COMPLETE
+  for (int i = 0;i<steps; i+=1){
+    int x1 = i*width/steps;
+    int y2 = i*height/steps;
+    line(x1, height, 0,y2);
+    line(x1, 0, width, y2);
+  }
+
+
+
+  
+}
+
+
+// PART (c) -> either of the following (or students own string-art inspired pattern - must use loops and straight lines)   [ 5 marks ]
+
+
+void myStringArtwork() {
+    int x = (int)random(10,width);
+    int y = (int)random(10,height);
+    int r = (int)random(100,500);
+ s
+  // TO COMPLETE
+  for (int i=1; i<361; i+=1) {
+    
+    float t = radians(i);
+    float ot = radians(i-1);
+    float d = x*t;
+    float od = x*ot;
+
+    float oxpos = (x-y)*cos(ot)+r*cos(od);
+    float oypos = (x-y)*sin(ot)+r*sin(od);
+
+    float xpos = (x-y)*cos(t)+r*cos(d);
+    float ypos = (x-y)*sin(t)+r*sin(d);
+
+    line(width/2+oxpos, height/2+oypos, width/2+xpos, height/2+ypos);
+  }  
+  
+  
+  
+  
+  
+}
