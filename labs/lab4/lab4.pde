@@ -65,7 +65,14 @@ void setup() {
   //      -> invoke any reoccuring methods (like handling a user keypress/guess), from keyPressed or draw below
   //      -> be sure to use some flag variables to know when the guess is complete (word fully revealed), 
   //          and to track how many guesses have taken place 
-  
+  String[] dictarray = initializedict();
+  word = pick_word(dictarray);
+  lens = word.length;
+  hidex = new int[lens];
+  showIndex = new int[lens]; 
+  println("Simple Hangman Game:");
+  println("... tokenized string array");
+  showord(lens, word);  
 }
 
 
@@ -79,7 +86,7 @@ void draw() {
 
 
 void keyPressed() {
-  
-  
-  
+    guessword(lens, word);
+    showord(lens, word);
+    testcheck();   
 }
