@@ -8,9 +8,9 @@
 // Question 3:  Design your own custom sound effect 
 //            (from manipulating and combining waveforms - tones, noise, other)
 
+/*
 
-
-float[] genSoundEffect( /* nothing specified here yet */ ) {
+float[] genSoundEffect( nothing specified here yet ) {
   
   
   // TO COMPLETE
@@ -18,3 +18,5 @@ float[] genSoundEffect( /* nothing specified here yet */ ) {
   
   
 }
+
+*/
