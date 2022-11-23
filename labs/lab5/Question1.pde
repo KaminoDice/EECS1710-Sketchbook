@@ -1,8 +1,8 @@
 // Lab 5 - Question1.pde
 // ======================================
-// Student ID: 
-// First Name:
-// EECS User Name (not password):
+// Student ID: 219256809
+// First Name: Huanrui
+// EECS User Name (not password): saikoro
 // ======================================
 
 // DO NOT INCLUDE ANY setup() or draw() routines here, these will be located in your main file

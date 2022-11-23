@@ -1,8 +1,8 @@
 // Lab 5 - lab5.pde
 // ======================================
-// Student ID: SOLUTION
-// First Name:
-// EECS User Name (not password):
+// Student ID: 219256809
+// First Name: Huanrui
+// EECS User Name (not password): saikoro
 // ======================================
 
 
@@ -32,24 +32,27 @@ void setup() {
   // =======================
   // synthesizing and plotting tones
 
+
   //myChirp = new AudioSample(this, generateChirp(5, 440, 0.9999));
+  //myChirp = new AudioSample(this, generateChirp(5, 440, 1.0001));
   //myChirp.play();
   
   myChirpB = new AudioSample(this, chirpsBetween(2, 200, 1600, 10));
-  myChirpB.play();
-  
-
+  //myChirpB.play();
   // QUESTION 2 methods calls (comment other questions)
   // =======================
   // synthesizing chirps
 
-
+  myWave = genSoundEffect(12, SAMPLE_RATE, 440);
+  mySE = new AudioSample(this, myWave);
   // QUESTION 3 methods
   // =======================
   // design a sound effect of your own
   // from other waveforms learned in class
 
-
+  //noteWave = noteRead("sample1.txt");
+  noteWave = noteRead("myMelody.txt");
+  noteSample = new AudioSample(this, noteWave);
   // QUESTION 4 methods
   // =======================
   // read text data from file to drive a simple tone generator
@@ -83,8 +86,15 @@ void keyPressed() {
     myTone = new AudioSample(this, tone820);
     myTone.play();
 
+  } else if(key == '4' && !myTone.isPlaying()){
+    noteSample.play();
   }
 }
 
 void mousePressed() {
+  mySE.play();
+}
+
+void mouseReleased( ){
+  mySE.pause();
 }

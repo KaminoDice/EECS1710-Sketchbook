@@ -1,8 +1,8 @@
 // Lab 5 - Question2.pde
 // ======================================
-// Student ID:
-// First Name:
-// EECS User Name (not password):
+// Student ID: 219256809
+// First Name: Huanrui
+// EECS User Name (not password): saikoro
 // ======================================
 
 // NOTE: You are NOT permitted to use ArrayList or IntList or anything other than primitive arrays for all parts of this question
