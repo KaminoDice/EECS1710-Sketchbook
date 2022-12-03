@@ -1,8 +1,8 @@
 // Lab 6 - lab6.pde
 // ======================================
-// Student ID: 
-// First Name:
-// EECS User Name (not password):
+// Student ID: 219256809 
+// First Name: Huanrui
+// EECS User Name (not password): saikoro
 // ======================================
 
 
