@@ -1,83 +1,137 @@
 // Ice Cream Game
 // Made by: Huanrui Cao, Duong Tran, Nhat Tin Tran, Calista Butera
 
+// imports
+import processing.sound.*;
+AudioSample correct1;
+AudioSample correct2;
+AudioSample incorrect;
 
+String order_string = "";
+int[] orderOutput;
+int[] ice_making = new int[3];
+int[] order = new int[3];
+
+// variables to indicate whether or not the start screen / instructions method is the current screen
+boolean START_SCREEN = false;
+boolean INSTRUCTIONS = false;
+boolean KEY_REFERENCE = false;
+boolean GAME_PLAYING = false;
+boolean ORDER_CHECK = false;
+
+// PFont object
+PFont font;
+PGraphics ice_holder, ice_flavour, ice_topping;
 
 void setup() {
   size(900, 600);
   background(255, 255, 255);
+  
+  // generating sound for correct order
+  float[] correctSound1 = generateSound(DURATION/2, CORRECT1_FREQ, SAMPLE_RATE);
   correct1 = new AudioSample(this, correctSound1, SAMPLE_RATE);
+  float[] correctSound2 = generateSound(DURATION/2, CORRECT2_FREQ, SAMPLE_RATE);
   correct2 = new AudioSample(this, correctSound2, SAMPLE_RATE);
-  incorrect = new AudioSample(this, incorrectSound, SAMPLE_RATE);
 
-   gameSetup();
-  order();
+  // sound for incorrect order
+  float[] incorrectSound = generateSound(DURATION, INCORRECT_FREQ, SAMPLE_RATE);
+  incorrect = new AudioSample(this, incorrectSound, SAMPLE_RATE);
   
-  //load ingredients
-  cup = loadImage("cup.png");
-  cone = loadImage("cone.png");
-  bowl = loadImage("bowl.png");
-  chocolate = loadImage("chocolate.png");
-  strawberry = loadImage("strawberry.png");
-  mint = loadImage("mint.png");
-  vanilla = loadImage("vanilla.png");
-  chocolateSyrup = loadImage("chocolateSyrup.png");
-  strawberrySyrup = loadImage("strawberrySyrup.png");
-  caramelSyrup = loadImage("caramelSyrup.png");
-  bubblegumSyrup = loadImage ("bubblegumSyrup.png");
-  cherry = loadImage ("cherry.png");
-  waffle = loadImage ("waffleStick.png");
-  sprinkles = loadImage ("sprinkles.png");
-  pretzel = loadImage ("pretzel.png");
+  // START SCREEN
+  displayStartScreen();
   
-  //resize ingredients
-  cup.resize(90,90);
-  bowl.resize(90,70);
-  cone.resize(90,90);
-  strawberry.resize(90,90);
-  chocolate.resize(90,90);
-  mint.resize(90,90);
-  vanilla.resize(90,90);
-  chocolateSyrup.resize(90,90);
-  strawberrySyrup.resize(90,90);
-  bubblegumSyrup.resize(90,90);
-  caramelSyrup.resize(90,90);
-  cherry.resize(90,130);
-  waffle.resize(110,90);
-  pretzel.resize(90,90);
-  sprinkles.resize(100,100);
-  
-  //place ingredients
-  image(cup, 570, 25);
-  image(cone, 675, 25);
-  image(bowl, 790, 45);
-  image(strawberry, 550, 150);
-  image(chocolate, 635, 150);
-  image(vanilla, 720, 150);
-  image(mint, 805, 150);
-  image(chocolateSyrup, 550, 280);
-  image(bubblegumSyrup, 635, 280);
-  image(strawberrySyrup, 720, 280);
-  image(caramelSyrup, 805, 280);
-  image(sprinkles, 570, 400);
-  image(pretzel, 710, 410);
-  image(cherry, 630, 450);
-  image(waffle, 770, 490);
+  ice_holder = createGraphics(width,height,JAVA2D);
+  ice_flavour = createGraphics(width,height,JAVA2D);
+  ice_topping = createGraphics(width,height,JAVA2D);
+  // method call to DISPLAY INSTRUCTIONS
+  //displayInstructions();
+  order = order();
 }
+
+
 
 void draw() {
+  if (GAME_PLAYING){
+    loop();
+    background(255,255,255);
+    gameSetup();
+    icecream_making();
+    if (ORDER_CHECK){
+      if ((order[0]+1 == ice_making[0]) && (order[1]+1 == ice_making [1]) && (order[2]+1 == ice_making[2])){
+        renderCorrectScreen(); 
+      }else{
+        renderIncorrectScreen();
+      }
+      noLoop();
+    }
+  }
   
 }
 
-void keyPressed(){
-  if (key == '1' ){
-    correct1.amp(0.5);
-    correct1.play();
-    delay(DELAY);
-    correct2.amp(0.5);
-    correct2.play();
-  }else if(key == '3'){
-    incorrect.amp(0.5);
-    incorrect.play();
+void mousePressed() {
+  if ((mouseX >= 315 && mouseX <= (315+270)) && (mouseY >= 300 && mouseY <= (300+70)) && START_SCREEN == true) {
+    displayInstructions();
+    START_SCREEN = false;
+    KEY_REFERENCE = false;
   }
+  if ((mouseX >= 830-(50/2) && mouseX <= 830+(50/2)) && (mouseY >= 550-(50/2) && mouseY <= 550+(50/2)) && INSTRUCTIONS == true) {
+    GAME_PLAYING = true;
+  }
+}
+
+void keyPressed() {
+
+  if (key == 'h' && INSTRUCTIONS == true) {
+    displayKeyReference();
+    INSTRUCTIONS = false;
+    START_SCREEN = false;
+  }
+  if (key == 'b' && KEY_REFERENCE == true) {
+    displayInstructions();
+    KEY_REFERENCE = false;
+    START_SCREEN = false;
+  }
+
+  if (key == 'd') {
+    println("1. Holders:\n\'c\' for cone\n\'u\' for cup\n\'b\' for bowl");
+    println("2. Flavours:\n\'s\' for strawberry\n\'o\' for chocolate\n\'v\' for vanilla\n\'m\' for mint");
+    println("3. Toppings:\n\'e\' for cherry\n\'i\' for sprinkles\n\'w\' for waffle sticks\n\'p\' for pretzel");
+    println("\nPress SpaceBar to check if the order is correct.");
+    println("Press \'d\' at any time to display controls in the console.");
+  }
+
+  if (GAME_PLAYING){
+      if (key == 'c'){
+        ice_making[0] = 1; 
+      }else if(key == 'u'){
+        ice_making[0] = 2;
+      }else if(key == 'b'){
+        ice_making[0] = 3;
+      }
+
+      if (key == 's'){
+        ice_making[1] = 1;
+      }else if(key == 'o'){
+        ice_making[1] = 2;
+      }else if(key == 'v'){
+        ice_making[1] = 3;
+      }else if(key == 'm'){
+        ice_making[1] = 4;
+      }
+
+      if(key == 'e'){
+        ice_making[2] = 1;
+      }else if(key == 'i'){
+        ice_making[2] = 2;
+      }else if(key == 'w'){
+        ice_making[2] = 3;
+      }else if(key == 'p'){
+        ice_making[2] = 4;
+      }
+
+      if (key == ' '){
+        ORDER_CHECK = true;
+      }
+  }
+
 }

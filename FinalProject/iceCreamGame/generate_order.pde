@@ -1,29 +1,25 @@
-void order() {
-  String holder = "Cup Bowl Cone";
+
+int[] order() {
+  String holder = "Cone Cup Bowl";
   String [] holderToken = split(holder, ' ');
-  
-  String flavour = "Chocolate Strawberry Vanilla Mint Sesame Matcha";
+
+  String flavour = "Strawberry Chocolate Vanilla Mint";
   String [] flavourToken = split(flavour, ' ');
-  
-  String syrup = "Chocolate Strawberry Caramel BubbleGum";
-  String [] syrupToken = split(syrup, ' ');
-  
-  String topping = "Sprinkles Cherry WaffleSticks Pretzel";
+
+  String topping = "Cherry Sprinkles WaffleSticks Pretzel";
   String [] toppingToken = split(topping, ' ');
-  
-  int ranHolder = int (random(0,2)); //generate random token for holders
-  int ranFlavour = int (random(0,5)); // generate random token for flavours
-  int ranSyrupTopping = int (random(0,3)); // generate random token for syrups and toppings
-  
-  String order = "A "+ holderToken[ranHolder]+ " of "+ flavourToken[ranFlavour]+ " ice-cream with "+ 
-  syrupToken[ranSyrupTopping]+ " syrup and "+ toppingToken[ranSyrupTopping]+ " on top ";
-  
-  println (order);
-  
-  //order board
-  fill (255);
-  textSize(22);
-  textAlign(CENTER);
-  text (order, 120, 490, 300, 550);
-  
+
+  int ranHolder = int (random(0, 2)); //generate random token for holders
+  int ranFlavour = int (random(0, 3)); // generate random token for flavours
+  int ranTopping = int (random(0, 3)); // generate random token for syrups and toppings
+
+  order_string = "A "+ holderToken[ranHolder]+ " of "+ flavourToken[ranFlavour]+ " ice-cream with "+ toppingToken[ranTopping]+ " on top ";
+
+  println (order_string);
+
+  int[] outputs = new int[3];
+  outputs[0] = ranHolder;
+  outputs[1] = ranFlavour;
+  outputs[2] = ranTopping;
+  return outputs;
 }
