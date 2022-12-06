@@ -43,19 +43,27 @@ void setup() {
   ice_holder = createGraphics(width,height,JAVA2D);
   ice_flavour = createGraphics(width,height,JAVA2D);
   ice_topping = createGraphics(width,height,JAVA2D);
-  // method call to DISPLAY INSTRUCTIONS
-  //displayInstructions();
-  order = order();
+
+  
 }
 
 
 
 void draw() {
+
+  //INSTRUCTIONS PAGE
+  if (INSTRUCTIONS ){
+    displayInstructions();
+  }
+
+  //PLAYING INTERFACE
   if (GAME_PLAYING){
     loop();
     background(255,255,255);
     gameSetup();
     icecream_making();
+
+    // ORDER CHECK PAGE
     if (ORDER_CHECK){
       if ((order[0]+1 == ice_making[0]) && (order[1]+1 == ice_making [1]) && (order[2]+1 == ice_making[2])){
         renderCorrectScreen(); 
@@ -65,33 +73,40 @@ void draw() {
       noLoop();
     }
   }
+
+  //HELP PAGE
+  if (KEY_REFERENCE){
+    displayKeyReference();
+  }
   
 }
 
 void mousePressed() {
+  // STAR BUTTON CLICK CHECK
   if ((mouseX >= 315 && mouseX <= (315+270)) && (mouseY >= 300 && mouseY <= (300+70)) && START_SCREEN == true) {
-    displayInstructions();
+    INSTRUCTIONS = true;
     START_SCREEN = false;
-    KEY_REFERENCE = false;
   }
+  // INSTRUCTIONS SKIP CHECK
   if ((mouseX >= 830-(50/2) && mouseX <= 830+(50/2)) && (mouseY >= 550-(50/2) && mouseY <= 550+(50/2)) && INSTRUCTIONS == true) {
     GAME_PLAYING = true;
+    INSTRUCTIONS = false;
+    START_SCREEN = false;
+    order = order();
+  }
+
+  // TRY_AGAIN BUTTON CHECK
+  if ((mouseX >= 315 && mouseX <= (315+270)) && (mouseY >= 500 && mouseY <= (500+70)) && ORDER_CHECK) {
+    ORDER_CHECK = false;
+    order = order();
+    ice_making = new int[3];
+    loop();
   }
 }
 
 void keyPressed() {
 
-  if (key == 'h' && INSTRUCTIONS == true) {
-    displayKeyReference();
-    INSTRUCTIONS = false;
-    START_SCREEN = false;
-  }
-  if (key == 'b' && KEY_REFERENCE == true) {
-    displayInstructions();
-    KEY_REFERENCE = false;
-    START_SCREEN = false;
-  }
-
+  // CLI HELP KEY LISTENING
   if (key == 'd') {
     println("1. Holders:\n\'c\' for cone\n\'u\' for cup\n\'b\' for bowl");
     println("2. Flavours:\n\'s\' for strawberry\n\'o\' for chocolate\n\'v\' for vanilla\n\'m\' for mint");
@@ -100,12 +115,13 @@ void keyPressed() {
     println("Press \'d\' at any time to display controls in the console.");
   }
 
-  if (GAME_PLAYING){
-      if (key == 'c'){
+  //MAKING_ICECREAM KEY LSITEN
+  if (GAME_PLAYING && !KEY_REFERENCE){
+      if (key == 'c' ){
         ice_making[0] = 1; 
       }else if(key == 'u'){
         ice_making[0] = 2;
-      }else if(key == 'b'){
+      }else if(key == 'b' && KEY_REFERENCE == false){
         ice_making[0] = 3;
       }
 
@@ -133,5 +149,18 @@ void keyPressed() {
         ORDER_CHECK = true;
       }
   }
+  // GUI HELP KEY LISTEN
+  if (key == 'h' && (INSTRUCTIONS || GAME_PLAYING)) {
+    KEY_REFERENCE = true;
+    GAME_PLAYING = false;
+  }
 
+  //GUI HELP BACK KEY LISTEN
+  if (key == 'b' && KEY_REFERENCE == true && INSTRUCTIONS == false) {
+    KEY_REFERENCE = false;
+    GAME_PLAYING = true;
+  }
+  if (key == 'b' && KEY_REFERENCE == true && INSTRUCTIONS == true) {
+    KEY_REFERENCE = false;
+  }
 }

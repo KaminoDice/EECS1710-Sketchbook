@@ -1,5 +1,5 @@
 void displayKeyReference () {
-  KEY_REFERENCE = true;
+  
   
   PFont myFont;
   myFont = createFont("Georgia", 30);

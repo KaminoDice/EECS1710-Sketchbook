@@ -1,5 +1,5 @@
 void displayInstructions() {
-  INSTRUCTIONS = true;
+  
   
   PFont myFont;
   myFont = createFont("Georgia", 30);

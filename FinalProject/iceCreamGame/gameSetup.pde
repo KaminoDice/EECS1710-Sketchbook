@@ -107,6 +107,7 @@ void icecream_making(){
       switch(ice_making[0]){
         case 0:
           ice_holder.beginDraw();
+          ice_holder.clear();
           ice_holder.endDraw();
           break;
         case 1:
@@ -135,6 +136,7 @@ void icecream_making(){
       switch(ice_making[1]){
         case 0:
           ice_flavour.beginDraw();
+          ice_flavour.clear();
           ice_flavour.endDraw();
           break;
         case 1:
@@ -170,6 +172,7 @@ void icecream_making(){
       switch(ice_making[2]){
         case 0:
           ice_topping.beginDraw();
+          ice_topping.clear();
           ice_topping.endDraw();
           break;
         case 1:
