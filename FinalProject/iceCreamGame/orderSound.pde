@@ -5,7 +5,7 @@ final int SAMPLE_RATE = 44100;
 final int CORRECT1_FREQ = 659;
 final int CORRECT2_FREQ = 880;
 final int INCORRECT_FREQ = 146;
-final int DELAY = 800;
+final int DELAY = 400;
 
 //correct sound (*ding ding!*) ----------
 //correct1.amp(0.5);

@@ -96,7 +96,7 @@ void mousePressed() {
   }
 
   // TRY_AGAIN BUTTON CHECK
-  if ((mouseX >= 315 && mouseX <= (315+270)) && (mouseY >= 500 && mouseY <= (500+70)) && ORDER_CHECK) {
+  if ((mouseX >= 315 && mouseX <= (315+270)) && (mouseY >= 440 && mouseY <= (440+70)) && ORDER_CHECK) {
     ORDER_CHECK = false;
     order = order();
     ice_making = new int[3];
@@ -115,7 +115,7 @@ void keyPressed() {
     println("Press \'d\' at any time to display controls in the console.");
   }
 
-  //MAKING_ICECREAM KEY LSITEN
+  //MAKING_ICECREAM KEY LISTEN
   if (GAME_PLAYING && !KEY_REFERENCE){
       if (key == 'c' ){
         ice_making[0] = 1; 

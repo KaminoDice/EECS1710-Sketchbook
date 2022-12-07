@@ -16,10 +16,10 @@ void renderIncorrectScreen() {
   fill(255);
   textAlign(CENTER);
   textSize(80);
-  text("Incorrect", width/2, height/2.4);
+  text("Incorrect!", width/2, 300);
   textAlign(CENTER);
   textSize(36);
-  text("Be sure to follow the order correctly next time.", width/2, (height/3)+height/4);
+  text("Make sure to follow the order correctly next time. :(", width/2, 350);
   
   // wrong sound (*boooonk!*) --------------
   incorrect.amp(0.5);
@@ -29,8 +29,8 @@ void renderIncorrectScreen() {
   fill (205, 246, 232);
   stroke (247, 216, 186);
   strokeWeight(8);
-  rect (315, 500, 270, 70);
+  rect (315, 440, 270, 70);
   fill (252, 102, 111);
   textSize(30);
-  text("PLAY AGAIN", width/2, 545);
+  text("PLAY AGAIN", width/2, 485);
 }

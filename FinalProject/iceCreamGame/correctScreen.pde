@@ -17,10 +17,10 @@ void renderCorrectScreen() {
   fill(255);
   textAlign(CENTER);
   textSize(80);
-  text("Correct!", width/2, height/2.4);
+  text("Correct!", width/2, 300);
   textAlign(CENTER);
   textSize(36);
-  text("You have made a customer very happy! :)", width/2, (height/3)+height/4);
+  text("You have made a customer very happy! :)", width/2, 350);
 
   //correct sound (*ding ding!*) ----------
   correct1.amp(0.5);
@@ -33,8 +33,8 @@ void renderCorrectScreen() {
   fill (205, 246, 232);
   stroke (247, 216, 186);
   strokeWeight(8);
-  rect (315, 500, 270, 70);
+  rect (315, 440, 270, 70);
   fill (252, 102, 111);
   textSize(30);
-  text("NEXT ORDER", width/2, 545);
+  text("NEXT ORDER", width/2, 485);
 }

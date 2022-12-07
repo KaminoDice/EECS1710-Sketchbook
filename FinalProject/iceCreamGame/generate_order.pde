@@ -9,9 +9,9 @@ int[] order() {
   String topping = "Cherry Sprinkles WaffleSticks Pretzel";
   String [] toppingToken = split(topping, ' ');
 
-  int ranHolder = int (random(0, 2)); //generate random token for holders
-  int ranFlavour = int (random(0, 3)); // generate random token for flavours
-  int ranTopping = int (random(0, 3)); // generate random token for syrups and toppings
+  int ranHolder = int (random(0, 3)); //generate random token for holders
+  int ranFlavour = int (random(0, 4)); // generate random token for flavours
+  int ranTopping = int (random(0, 4)); // generate random token for syrups and toppings
 
   order_string = "A "+ holderToken[ranHolder]+ " of "+ flavourToken[ranFlavour]+ " ice-cream with "+ toppingToken[ranTopping]+ " on top ";
 

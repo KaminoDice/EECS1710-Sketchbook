@@ -99,7 +99,7 @@ void gameSetup() {
   fill (255);
   textSize(22);
   textAlign(CENTER);
-  text (order_string, 120, 510, 300, 550);
+  text (order_string, 110, 500, 320, 550);
 }
 
 void icecream_making(){
